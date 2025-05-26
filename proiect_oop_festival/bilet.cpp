@@ -2,32 +2,55 @@
 #include <iostream>
 
 using namespace Festival_Manager;
-Bilet::Bilet(const std::string& tip, double pret, std::shared_ptr<Concert> concert)
-    : m_tip(tip), m_pret(pret), m_concert(concert) {
+
+int Bilet::s_total_bilete = 0;
+double Bilet::s_total_incasari = 0;
+
+Bilet::Bilet(const std::string& tip)
+    : m_tip(tip)
+{
+    if (tip == "VIP") {
+        m_pret = 500.0;
+    }
+    else if (tip == "General") {
+        m_pret = 250.0;
+    }
+    else if (tip == "Student") {
+        m_pret = 100.0;
+    }
+    else {
+        m_pret = 0.0; 
+    }
 }
 
 
 void Bilet::Afiseaza() const {
-    std::cout << "Bilet [Tip: " << m_tip << ", Pret: " << m_pret << " lei]\n";
-    if (m_concert != nullptr) {
-        std::cout << "Concert asociat:\n";
-        m_concert->AfiseazaConcert();
-    }
-    else {
-        std::cout << "Concert inexistent!\n";
-    }
+    std::cout << "Bilet tip: " << m_tip
+        << " | Pret: " << m_pret << " lei\n";
 }
 
 std::string Bilet::GetTip() const {
     return m_tip;
 }
 
-
 double Bilet::GetPret() const {
     return m_pret;
 }
 
+int Bilet::GetTotalBilete() {
+    return s_total_bilete;
+}
 
-std::shared_ptr<Concert> Bilet::GetConcert() const {
-    return m_concert;
+double Bilet::GetTotalIncasari() {
+    return s_total_incasari;
+}
+
+void Bilet::ResetStatistici() {
+    s_total_bilete = 0;
+    s_total_incasari = 0.0;
+}
+
+void Bilet::AdaugaStatistici(double suma) {
+    s_total_bilete++;
+    s_total_incasari += suma;
 }

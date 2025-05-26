@@ -6,7 +6,7 @@
 #include "concert.h"
 #include "bilet.h"
 #include <vector>
-#include <memory>
+
 
 namespace Festival_Manager {
 
@@ -31,6 +31,7 @@ namespace Festival_Manager {
         void IncarcaParticipantiDinFisier(const std::string& nume_fisier);
         void IncarcaArtistiDinFisier(const std::string& nume_fisier);
         void IncarcaConcerteDinFisier(const std::string& nume_fisier);
+        void AfiseazaStatisticiFestival() const;
 
     };
 

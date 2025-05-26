@@ -4,7 +4,3 @@ Martin Garrix;02-08-2025;23:00;75
 Steve Aoki;03-08-2025;01:00;60
 Dimitri Vegas;03-08-2025;20:00;80
 Lost Frequencies;03-08-2025;23:30;70
-Bebe Rexha;04-08-2025;21:00;60
-Don Diablo;04-08-2025;00:30;75
-Salvatore Ganacci;04-08-2025;02:00;45
-Tujamo;04-08-2025;03:30;40
