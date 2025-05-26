@@ -11,6 +11,12 @@
 namespace Festival_Manager {
 
     class SistemFestival {
+
+    private:
+        std::vector<std::shared_ptr<Participant>> m_participanti;
+        std::vector<std::shared_ptr<Artist>> m_artisti;
+        std::vector<std::shared_ptr<Concert>> m_concerte;
+
     public:
        
         SistemFestival();
@@ -26,10 +32,6 @@ namespace Festival_Manager {
         void IncarcaArtistiDinFisier(const std::string& nume_fisier);
         void IncarcaConcerteDinFisier(const std::string& nume_fisier);
 
-    private:
-        std::vector<std::shared_ptr<Participant>> m_participanti;
-        std::vector<std::shared_ptr<Artist>> m_artisti;
-        std::vector<std::shared_ptr<Concert>> m_concerte;
     };
 
 } 

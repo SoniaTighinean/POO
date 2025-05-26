@@ -8,6 +8,12 @@
 
 namespace Festival_Manager {
     class Bilet {
+
+    private:
+        std::string m_tip;
+        double m_pret;
+        std::shared_ptr<Concert> m_concert;
+
     public:
         Bilet(const std::string& tip, double pret, std::shared_ptr<Concert> concert);
 
@@ -17,10 +23,6 @@ namespace Festival_Manager {
         double GetPret() const;
         std::shared_ptr<Concert> GetConcert() const;
 
-    private:
-        std::string m_tip;
-        double m_pret;
-        std::shared_ptr<Concert> m_concert;
     };
 
 } 
