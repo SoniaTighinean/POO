@@ -17,6 +17,7 @@ int main() {
         cout << "5. Afiseaza participanti cu biletele lor\n";
         cout << "6. Afiseaza artisti\n";
         cout << "7. Afiseaza program festival\n";
+        cout << "8. Statistici festival\n";
         cout << "0. Iesire\n";
         cout << "Alege o optiune: ";
         cin >> optiune;
@@ -29,6 +30,7 @@ int main() {
         case 5: festival.AfiseazaParticipantiCuBilete(); break;
         case 6: festival.AfiseazaArtisti(); break;
         case 7: festival.AfiseazaProgramFestival(); break;
+		case 8: festival.AfiseazaStatisticiFestival(); break;
         case 0: cout << "La revedere!\n"; return 0;
         default: cout << "Optiune invalida!\n";
         }

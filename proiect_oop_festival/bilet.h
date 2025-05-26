@@ -2,29 +2,31 @@
 #define BILET_H
 
 #include <string>
-#include <memory>
-#include "concert.h"
-
 
 namespace Festival_Manager {
-    class Bilet {
 
+    class Bilet {
     private:
         std::string m_tip;
         double m_pret;
-        std::shared_ptr<Concert> m_concert;
+        static double s_total_incasari;
+        static int s_total_bilete;
 
     public:
-        Bilet(const std::string& tip, double pret, std::shared_ptr<Concert> concert);
+        Bilet(const std::string& tip);
 
         void Afiseaza() const;
 
         std::string GetTip() const;
         double GetPret() const;
-        std::shared_ptr<Concert> GetConcert() const;
+
+        static int GetTotalBilete();
+        static double GetTotalIncasari();
+        static void ResetStatistici();
+        static void AdaugaStatistici(double suma);
 
     };
 
-} 
+}
 
-#endif 
+#endif
