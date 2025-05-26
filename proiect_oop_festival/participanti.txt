@@ -1,0 +1,3 @@
+Ana Popescu;ana@gmail.com;21
+George Ionescu;george@yahoo.com;19
+Maria Dobre;maria@gmail.com;25

@@ -1,0 +1,10 @@
+David Guetta;guetta@untold.com;56;EDM;80000
+Armin van Buuren;armin@untold.com;47;Trance;75000
+Martin Garrix;garrix@untold.com;28;Future House;90000
+Steve Aoki;aoki@untold.com;46;Electro House;70000
+Dimitri Vegas;dimitri@untold.com;41;Big Room;65000
+Lost Frequencies;lost@untold.com;31;Deep House;55000
+Bebe Rexha;bebe@untold.com;34;Pop;60000
+Don Diablo;don@untold.com;44;Future House;60000
+Salvatore Ganacci;ganacci@untold.com;37;Bass;40000
+Tujamo;tujamo@untold.com;35;House;45000
