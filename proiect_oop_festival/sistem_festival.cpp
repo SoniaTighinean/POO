@@ -1,58 +1,75 @@
 ﻿#include "sistem_festival.h"
 #include "concert.h"
+#include "sponsor.h"
+
 #include <fstream>    
 #include <sstream>   
 #include <iostream>    
-#include <string>     
+#include <string>   
+#include <algorithm>
 
 
 using namespace Festival_Manager;
-using namespace std;
 
+SistemFestival::SistemFestival() {
+    IncarcaParticipantiDinFisier("participanti.txt");
+    IncarcaArtistiDinFisier("artisti.txt");
+    IncarcaConcerteDinFisier("concerte.txt");
+    Bilet::ResetStatistici();
+    Sponsor::ResetSponsorizari();
 
+    Festival_Manager::Sponsor s1("Vodafone", 1000.0);     
+    Festival_Manager::Sponsor s2("Kaufland", 1500.0);     
+    Festival_Manager::Sponsor s3("Coca-Cola", 800.0);     
+   
+    m_sponsori.push_back(s1);
+    m_sponsori.push_back(s2);
+    m_sponsori.push_back(s3);
+
+}
 
 void SistemFestival::CreeazaParticipant() {
-    string nume, email;
+    std::string nume, email;
     int varsta;
 
-    cout << "Nume participant: ";
-    getline(cin >> ws, nume);
-    cout << "Email: ";
-    getline(cin >> ws, email);
-    cout << "Varsta: ";
-    cin >> varsta;
+    std::cout << "Nume participant: ";
+    std::getline(std::cin >> std::ws, nume);
+    std::cout << "Email: ";
+    std::getline(std::cin >> std::ws, email);
+    std::cout << "Varsta: ";
+    std::cin >> varsta;
 
-    auto participant = make_shared<Participant>(nume, email, varsta);
+    auto participant = std::make_shared<Participant>(nume, email, varsta);
     m_participanti.push_back(participant);
 
-    cout << "Participant creat cu succes!\n";
+    std::cout << "Participant creat cu succes!\n";
 }
 
 void SistemFestival::CreeazaArtist() {
-    string nume, email, gen;
+    std::string nume, email, gen;
     int varsta;
     double taxa;
 
-    cout << "Nume artist: ";
-    getline(cin >> ws, nume);
-    cout << "Email: ";
-    getline(cin >> ws, email);
-    cout << "Varsta: ";
-    cin >> varsta;
-    cout << "Gen muzical: ";
-    getline(cin >> ws, gen);
-    cout << "Taxa performanta: ";
-    cin >> taxa;
+    std::cout << "Nume artist: ";
+    std::getline(std::cin >> std::ws, nume);
+    std::cout << "Email: ";
+    std::getline(std::cin >> std::ws, email);
+    std::cout << "Varsta: ";
+    std::cin >> varsta;
+    std::cout << "Gen muzical: ";
+    std::getline(std::cin >> std::ws, gen);
+    std::cout << "Taxa performanta: ";
+    std::cin >> taxa;
 
-    auto artist = make_shared<Artist>(nume, email, varsta, gen, taxa);
+    auto artist = std::make_shared<Artist>(nume, email, varsta, gen, taxa);
     m_artisti.push_back(artist);
 
-    cout << "Artist creat cu succes!\n";
+    std::cout << "Artist creat cu succes!\n";
 }
 
 void SistemFestival::AfiseazaArtisti() const {
     if (m_artisti.empty()) {
-        cout << "Nu exista artisti inregistrati.\n";
+        std::cout << "Nu exista artisti inregistrati.\n";
         return;
     }
 
@@ -79,19 +96,19 @@ void SistemFestival::AfiseazaParticipantiCuBilete() const {
 
 void SistemFestival::CreeazaConcert() {
     if (m_artisti.empty()) {
-        cout << "Nu exista artisti. Creeaza mai intai un artist.\n";
+        std::cout << "Nu exista artisti. Creeaza mai intai un artist.\n";
         return;
     }
 
-    cout << "Selecteaza un artist pentru concert:\n";
+    std::cout << "Selecteaza un artist pentru concert:\n";
     for (size_t i = 0; i < m_artisti.size(); ++i) {
-        cout << i + 1 << ". " << m_artisti[i]->GetNume() << "\n";
+        std::cout << i + 1 << ". " << m_artisti[i]->GetNume() << "\n";
     }
 
     size_t optiune;
-    cin >> optiune;
+    std::cin >> optiune;
     if (optiune < 1 || optiune > m_artisti.size()) {
-        cout << "Optiune invalida.\n";
+        std::cout << "Optiune invalida.\n";
         return;
     }
 
@@ -128,6 +145,23 @@ void SistemFestival::CreeazaConcert() {
 
     std::cout << "Concert creat cu succes!\n";
 }
+
+
+void Festival_Manager::SistemFestival::CreeazaSponsor() {
+    std::string nume;
+    double suma;
+
+    std::cout << "Nume sponsor: ";
+    std::getline(std::cin >> std::ws, nume);
+    std::cout << "Suma oferita: ";
+    std::cin >> suma;
+
+    Festival_Manager::Sponsor s(nume, suma);
+    m_sponsori.push_back(s);
+
+    std::cout << "Sponsor adaugat cu succes!\n";
+}
+
 
 void SistemFestival::CumparaBilet() {
     if (m_participanti.empty()) {
@@ -166,15 +200,39 @@ void SistemFestival::CumparaBilet() {
 
 
 void SistemFestival::AfiseazaProgramFestival() const {
-    if (m_concerte.empty()) {
-        cout << "Nu exista concerte programate.\n";
+    std::vector<std::shared_ptr<Concert>> program = m_concerte;
+
+    std::sort(program.begin(), program.end(),
+        [](const std::shared_ptr<Concert>& a, const std::shared_ptr<Concert>& b) {
+            const DataTimp& d1 = a->GetDataTimp();
+            const DataTimp& d2 = b->GetDataTimp();
+
+            if (d1.an != d2.an) return d1.an < d2.an;
+            if (d1.luna != d2.luna) return d1.luna < d2.luna;
+            if (d1.zi != d2.zi) return d1.zi < d2.zi;
+            if (d1.ora != d2.ora) return d1.ora < d2.ora;
+            return d1.minut < d2.minut;
+        });
+
+    for (const auto& concert : program) {
+        concert->AfiseazaConcert();
+    }
+
+
+}
+
+void Festival_Manager::SistemFestival::AfiseazaSponsori() const {
+    if (m_sponsori.empty()) {
+        std::cout << "Nu exista sponsori inregistrati.\n";
         return;
     }
 
-    for (const auto& concert : m_concerte) {
-        concert->AfiseazaConcert();
+    std::cout << "\n====== LISTA SPONSORI ======\n";
+    for (const auto& s : m_sponsori) {
+        s.Afiseaza();
     }
 }
+
 
 void SistemFestival::IncarcaParticipantiDinFisier(const std::string& nume_fisier) {
     std::ifstream fin(nume_fisier);
@@ -288,35 +346,30 @@ void SistemFestival::IncarcaConcerteDinFisier(const std::string& nume_fisier) {
 
 
 
-
-SistemFestival::SistemFestival() {
-    IncarcaParticipantiDinFisier("participanti.txt");
-    IncarcaArtistiDinFisier("artisti.txt");
-    IncarcaConcerteDinFisier("concerte.txt");
-    Bilet::ResetStatistici(); 
-
-}
-
 #include <unordered_set>
 
 void SistemFestival::AfiseazaStatisticiFestival() const {
     int nr_participanti = static_cast<int>(m_participanti.size());
     int nr_bilete = Bilet::GetTotalBilete();
-    double incasari = Bilet::GetTotalIncasari();
+    double incasari_bilete = Bilet::GetTotalIncasari();
+    double sponsorizari = Sponsor::GetTotalSponsorizari();
+
 
     double cheltuieli = 0.0;
     for (const auto& artist : m_artisti) {
         cheltuieli += artist->GetTaxaPerformanta();
     }
 
+    double incasari = incasari_bilete + sponsorizari;
     double profit = incasari - cheltuieli;
 
     std::cout << "\n====== STATISTICI FESTIVAL ======\n";
     std::cout << "Numar participanti: " << nr_participanti << "\n";
     std::cout << "Numar bilete vandute: " << nr_bilete << "\n";
-    std::cout << "Incasari totale: " << incasari << " lei\n";
-    std::cout << "Cheltuieli artisti: " << cheltuieli << " lei\n";
-    std::cout << "Profit festival: " << profit << " lei\n";
+    std::cout << "Incasari bilete: " << incasari_bilete << " euro\n";
+    std::cout << "Sponsorizari: " << sponsorizari << " euro\n";
+    std::cout << "Cheltuieli artisti: " << cheltuieli << " euro\n";
+    std::cout << "Profit festival: " << profit << " euro\n";
     std::cout << "=================================\n";
 }
 

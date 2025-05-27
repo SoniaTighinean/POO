@@ -25,6 +25,8 @@ namespace Festival_Manager {
         static void ResetStatistici();
         static void AdaugaStatistici(double suma);
 
+        friend std::ostream& operator<<(std::ostream& os, const Bilet& bilet);
+
     };
 
 }

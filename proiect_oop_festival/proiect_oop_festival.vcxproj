@@ -134,6 +134,7 @@
     <ClCompile Include="participant.cpp" />
     <ClCompile Include="persoana.cpp" />
     <ClCompile Include="sistem_festival.cpp" />
+    <ClCompile Include="sponsor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="artist.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="participant.h" />
     <ClInclude Include="persoana.h" />
     <ClInclude Include="sistem_festival.h" />
+    <ClInclude Include="sponsor.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="artisti.txt" />
