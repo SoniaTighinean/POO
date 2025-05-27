@@ -24,6 +24,7 @@ namespace Festival_Manager {
         DataTimp GetDataTimp() const;
         int GetDurata() const;
 
+
     
     };
 

@@ -19,7 +19,7 @@ namespace Festival_Manager {
 				<< std::setw(2) << std::setfill('0') << luna << "-"
 				<< an << ", Ora: "
 				<< std::setw(2) << std::setfill('0') << ora << ":"
-				<< std::setw(2) << std::setfill('0') << minut << "\n";
+				<< std::setw(2) << std::setfill('0') << minut ;
 		}
 	};
 }

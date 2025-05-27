@@ -8,9 +8,9 @@ Participant::Participant(const std::string& nume, const std::string& email, int 
 }
 
 void Participant::AfiseazaInfo() const {
-    std::cout << "Participant: " << m_nume << "\n"
-        << "Email: " << m_email << "\n"
-        << "Varsta: " << m_varsta << " ani\n";
+    std::cout << "Participant: " << m_nume << 
+                " | Email: " << m_email <<
+                " | Varsta: " << m_varsta << " ani\n";
 }
 
 void Participant::SetBilet(const Bilet& bilet) {
@@ -24,7 +24,7 @@ void Participant::SetBilet(const Bilet& bilet) {
 void Participant::AfiseazaBilet() const {
     if (AreBilet()) {
         std::cout << "Bilet detinut:\n";
-        m_bilet.Afiseaza();
+        std::cout << m_bilet << "\n";
     }
     else {
         std::cout << "Participantul nu are niciun bilet.\n";

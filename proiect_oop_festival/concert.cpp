@@ -8,10 +8,10 @@ Festival_Manager::Concert::Concert(std::shared_ptr<Artist> artist, const DataTim
 }
 
 void Concert::AfiseazaConcert() const {
-    std::cout << "Concert sustinut de: " << m_artist->GetNume() << "\n";
-    std::cout << "Gen muzical: " << m_artist->GetGenMuzical() << "\n";
+    std::cout << "Concert sustinut de: " << m_artist->GetNume() 
+              << " | Gen muzical: " << m_artist->GetGenMuzical() << "\n";
     m_data_timp.Afiseaza();
-    std::cout << "Durata: " << m_durata << " minute\n";
+    std::cout << " | Durata: " << m_durata << " minute\n";
     std::cout << "--------------------------\n";
 }
 
@@ -26,3 +26,5 @@ DataTimp Concert::GetDataTimp() const {
 int Concert::GetDurata() const {
     return m_durata;
 }
+
+

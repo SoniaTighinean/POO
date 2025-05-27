@@ -1,6 +1,7 @@
 ﻿#include "bilet.h"
 #include <iostream>
 
+
 using namespace Festival_Manager;
 
 int Bilet::s_total_bilete = 0;
@@ -26,7 +27,7 @@ Bilet::Bilet(const std::string& tip)
 
 void Bilet::Afiseaza() const {
     std::cout << "Bilet tip: " << m_tip
-        << " | Pret: " << m_pret << " lei\n";
+        << " | Pret: " << m_pret << " euro\n";
 }
 
 std::string Bilet::GetTip() const {
@@ -54,3 +55,14 @@ void Bilet::AdaugaStatistici(double suma) {
     s_total_bilete++;
     s_total_incasari += suma;
 }
+
+namespace Festival_Manager {
+
+    std::ostream& operator<<(std::ostream& os, const Bilet& bilet) {
+        os << "Tip bilet: " << bilet.m_tip
+            << " | Pret: " << bilet.m_pret << " euro";
+        return os;
+    }
+
+}
+

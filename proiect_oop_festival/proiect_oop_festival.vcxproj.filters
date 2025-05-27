@@ -36,6 +36,9 @@
     <ClCompile Include="concert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sponsor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="persoana.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="data_timp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sponsor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

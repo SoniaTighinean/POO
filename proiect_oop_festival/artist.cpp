@@ -12,8 +12,8 @@ void Artist::AfiseazaInfo() const{
 	std::cout << "Artist: " << m_nume 
 			  << " | Email: " << m_email
 			  << " | Varsta: " <<m_varsta
-		<< " | Gen Muzical: " << m_gen_muzical
-		<< " | Taxa Performanta: " << m_taxa_performanta << " lei\n";
+			  << " | Gen Muzical: " << m_gen_muzical
+			  << " | Taxa Performanta: " << m_taxa_performanta << " euro\n";
 }
 
 
