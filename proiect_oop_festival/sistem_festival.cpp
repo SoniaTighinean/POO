@@ -11,6 +11,52 @@
 
 using namespace Festival_Manager;
 
+SistemFestival* Festival_Manager::SistemFestival::s_instance = nullptr;
+
+SistemFestival* Festival_Manager::SistemFestival::GetInstance() {
+    if (!s_instance)
+        s_instance = new SistemFestival();
+    return s_instance;
+}
+
+void Festival_Manager::SistemFestival::Start() {
+    int optiune;
+    do {
+        std::cout << "\n======= MENIU FESTIVAL =======\n";
+        std::cout << "1. Creeaza participant\n";
+        std::cout << "2. Creeaza artist\n";
+        std::cout << "3. Creeaza concert\n";
+        std::cout << "4. Creeaza Sponsor\n";
+        std::cout << "5. Cumpara bilet\n";
+        std::cout << "6. Afiseaza participanti si bilete\n";
+        std::cout << "7. Afiseaza artisti\n";
+        std::cout << "8. Afiseaza program festival\n";
+        std::cout << "9. Afiseaza sponsori\n";
+        std::cout << "10. Statistici festival\n";
+        std::cout << "0. Iesire\n";
+        std::cout << "Alege o optiune: ";
+        std::cin >> optiune;
+
+        switch (optiune) {
+        case 1: CreeazaParticipant(); break;
+        case 2: CreeazaArtist(); break;
+        case 3: CreeazaConcert(); break;
+        case 4: CreeazaSponsor(); break;
+        case 5: CumparaBilet(); break;
+        case 6: AfiseazaParticipantiCuBilete(); break;
+        case 7: AfiseazaArtisti(); break;
+        case 8: AfiseazaProgramFestival(); break;
+        case 9: AfiseazaSponsori(); break;
+        case 10: AfiseazaStatisticiFestival(); break;
+        case 0: std::cout << "Iesire din aplicatie...\n"; break;
+        default: std::cout << "Optiune invalida.\n"; break;
+        }
+    } while (optiune != 0);
+}
+
+
+
+
 SistemFestival::SistemFestival() {
     IncarcaParticipantiDinFisier("participanti.txt");
     IncarcaArtistiDinFisier("artisti.txt");
@@ -28,6 +74,7 @@ SistemFestival::SistemFestival() {
 
 }
 
+// Creează un participant nou și îl adaugă în vectorul principal
 void SistemFestival::CreeazaParticipant() {
     std::string nume, email;
     int varsta;
@@ -198,7 +245,7 @@ void SistemFestival::CumparaBilet() {
     std::cout << "Bilet cumparat cu succes!\n";
 }
 
-
+// Sortează și afișează concertele în ordine cronologică
 void SistemFestival::AfiseazaProgramFestival() const {
     std::vector<std::shared_ptr<Concert>> program = m_concerte;
 

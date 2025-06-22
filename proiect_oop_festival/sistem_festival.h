@@ -7,6 +7,8 @@
 #include "bilet.h"
 #include "sponsor.h"
 #include <vector>
+#include <memory>
+#include <string>
 
 
 namespace Festival_Manager {
@@ -17,11 +19,19 @@ namespace Festival_Manager {
         std::vector<std::shared_ptr<Participant>> m_participanti;
         std::vector<std::shared_ptr<Artist>> m_artisti;
         std::vector<std::shared_ptr<Concert>> m_concerte;
-        std::vector<Festival_Manager::Sponsor> m_sponsori;
+        std::vector<Sponsor> m_sponsori;
+
+        static SistemFestival* s_instance;
+
+        SistemFestival();
 
     public:
        
-        SistemFestival();
+        SistemFestival(const SistemFestival&)= delete;
+        SistemFestival& operator=(const SistemFestival&) = delete;
+
+        static SistemFestival* GetInstance();
+        void Start();
 
         void CreeazaParticipant();
         void CreeazaArtist();
