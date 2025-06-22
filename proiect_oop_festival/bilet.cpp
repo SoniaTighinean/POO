@@ -7,6 +7,7 @@ using namespace Festival_Manager;
 int Bilet::s_total_bilete = 0;
 double Bilet::s_total_incasari = 0;
 
+// Constructorul setează prețul în funcție de tipul biletului
 Bilet::Bilet(const std::string& tip)
     : m_tip(tip)
 {
@@ -57,7 +58,7 @@ void Bilet::AdaugaStatistici(double suma) {
 }
 
 namespace Festival_Manager {
-
+    // Supraincarcare operator << pentru afișarea biletului
     std::ostream& operator<<(std::ostream& os, const Bilet& bilet) {
         os << "Tip bilet: " << bilet.m_tip
             << " | Pret: " << bilet.m_pret << " euro";

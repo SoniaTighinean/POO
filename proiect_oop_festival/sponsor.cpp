@@ -1,9 +1,10 @@
-#include "sponsor.h"
+﻿#include "sponsor.h"
 
 namespace Festival_Manager {
 
     double Sponsor::s_total_sponsorizari = 0.0;
 
+    // Constructorul adaugă automat suma în totalul sponsorizărilor
     Sponsor::Sponsor(const std::string& nume, double suma)
         : m_nume(nume), m_suma(suma)
     {

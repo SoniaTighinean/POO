@@ -19,6 +19,7 @@ std::shared_ptr<Artist> Concert::GetArtist() const {
     return m_artist;
 }
 
+// Returnează structura DataTimp asociată concertului
 DataTimp Concert::GetDataTimp() const {
     return m_data_timp;
 }

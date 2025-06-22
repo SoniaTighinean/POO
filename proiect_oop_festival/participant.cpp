@@ -1,4 +1,4 @@
-#include "participant.h"
+﻿#include "participant.h"
 #include <iostream>
 
 using namespace Festival_Manager;
@@ -21,6 +21,7 @@ void Participant::SetBilet(const Bilet& bilet) {
     m_bilet = bilet;
 }
 
+// Afișează datele participantului și biletul său (dacă există)
 void Participant::AfiseazaBilet() const {
     if (AreBilet()) {
         std::cout << "Bilet detinut:\n";
